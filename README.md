@@ -15,3 +15,6 @@ In that folder do a:
 ./compile
 ```
 to create a proper index.html.
+
+TODO:
+Add some gulp tasks to compile sass and md.
