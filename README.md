@@ -1,12 +1,12 @@
-# RevealFactory
-**RevealFactory** is a project forked somehow from [Reveal.js] (http://lab.hakim.se/reveal-js/#/), intended for people who need to create presentations on a regular basis. 
+# LaReveladora
+**LaReveladora** is a project forked somehow from [Reveal.js] (http://lab.hakim.se/reveal-js/#/), intended for people who need to create presentations on a regular basis. 
 It has three main differences with a regular Reveal installation:
 * Instead of downloading instances of Reveal library for each project it has a common folder with only an instance of Reveal.js and a folder of projects, managed by [Gulp](http://gulpjs.com/) tasks. 
 * Instead of coupling data and representation in the `index.html` as Reveal does this flavour takes advantage of mighty [pandoc](http://pandoc.org/) (as a [node module](https://www.npmjs.com/package/gulp-pandoc), handled by Gulp) to have a markdown file with the data, `index.md`. This design makes easy to maintain the data and code (and, no way, who doesn't prefer markdown to html?). To do that it uses a template file, `template.html`, forked from [this gist](https://gist.github.com/aaronwolen/5017084).
 * It's intended to be used with [Sass](http://sass-lang.com/). And if you don't know Sass yet, go right now and learn about it.
 
 ## Installation
-To install it, clone it with a `--recursive` flag on, to enable the cloning of Reveal (contained as a submodule of RevealFactory):
+To install it, clone it with a `--recursive` flag on, to enable the cloning of Reveal (contained as a submodule of LaReveladora):
 ```sh
 git clone --recursive https://github.com/Ale-/slideshower/
 ```
