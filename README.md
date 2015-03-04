@@ -1,8 +1,8 @@
 # slideshower
-slideshower is a project forked somehow from _Reveal.js_, intended for people who need to create presentations on a regular basis. 
-It has three main differences with a regular _Reveal_ installation:
-* Instead of downloading instances of _Reveal_ library for each project in this case it has a common folder with only an instance of _Reveal.js_ and a folder of projects, managed by Gulp tasks. 
-* Instead of coupling data and representation in the `index.html` as _Reveal.js_ does this flavour takes advantage of mighty [pandoc](http://pandoc.org/) (as a [node module](https://www.npmjs.com/package/gulp-pandoc), handled by _Gulp_) to have a markdown file with the data, `index.md`. This design makes easy to maintain the data and code (and, no way, who doesn't prefer markdown to html?). 
+slideshower is a project forked somehow from [Reveal.js] (http://lab.hakim.se/reveal-js/#/), intended for people who need to create presentations on a regular basis. 
+It has three main differences with a regular Reveal installation:
+* Instead of downloading instances of Reveal library for each project in this case it has a common folder with only an instance of Reveal.js and a folder of projects, managed by [Gulp](http://gulpjs.com/) tasks. 
+* Instead of coupling data and representation in the `index.html` as _Reveal.js_ does this flavour takes advantage of mighty [pandoc](http://pandoc.org/) (as a [node module](https://www.npmjs.com/package/gulp-pandoc), handled by _Gulp_) to have a markdown file with the data, `index.md`. This design makes easy to maintain the data and code (and, no way, who doesn't prefer markdown to html?). To do that it uses a template file, `template.html`, forked from [this gist](https://gist.github.com/aaronwolen/5017084).
 * It's intended to be used with [Sass](http://sass-lang.com/). And if you don't know Sass yet, go right now and learn about it.
 
 ## Installation
@@ -10,7 +10,7 @@ To install it, clone it with a `--recursive` flag on, to enable the cloning of _
 ```sh
 git clone --recursive https://github.com/Ale-/slideshower/
 ```
-If you don have node install it:
+If you don't have node install it:
 ```sh
 curl -sL https://deb.nodesource.com/setup | sudo bash -
 sudo apt-get install -y nodejs
@@ -61,6 +61,7 @@ Or watch the changes in the file (live reload to come) :
 ```sh
 gulp watchdata --n your-new-slideshow-project-name
 ```
+Look at the generated `index.html` to see the results.
 
 ### Give some nice style
 
