@@ -1,0 +1,18 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test: An Ionic project",
+  "dependencies": {
+    "gulp": "*",
+    "gulp-sass": "*",
+    "gulp-concat": "*",
+    "gulp-minify-css": "*",
+    "gulp-rename": "*"
+  },
+  "devDependencies": {
+    "bower": "*",
+    "gulp-util": "*",
+    "shelljs": "*",
+    "gulp-pandoc": "*"
+  }
+}
