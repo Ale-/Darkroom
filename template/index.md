@@ -1,2 +1,6 @@
-# Your slides go here
-Woah, such a slide!
+# Title
+## [author](website)
+Presentation description
+
+# First slide
+Whoah! What a slide!
