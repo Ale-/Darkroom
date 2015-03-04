@@ -8,7 +8,7 @@ It has three main differences with a regular Reveal installation:
 ## Installation
 To install it, clone it with a `--recursive` flag on, to enable the cloning of Reveal (contained as a submodule of LaReveladora):
 ```sh
-git clone --recursive https://github.com/Ale-/slideshower/
+git clone --recursive https://github.com/Ale-/LaReveladora
 ```
 If you don't have node install it:
 ```sh
