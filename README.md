@@ -2,19 +2,31 @@
 A generator of slideshows using Reveal.js and pandoc.
 
 ## Usage
-Slideshower is intended to create a folder of slideshows that share a root folder with reveal.js in there. The slideshows use [pandoc](http://pandoc.org/) to generate the final html files from a markdown file that holds the data. The tool comes with a bash file to generate the folder with the files and create another bash script to compile the data.
+Slideshower is intended to create a folder of slideshows that share a root folder with reveal.js in there. The slideshows use [pandoc](http://pandoc.org/) to generate the final html files from a markdown file that holds the data. 
 
-For example, go and do:
-```bash
-sudo chmod +x create
-./create
-```
-The command will prompt for some information to create the slideshow folder, that will be created in the folder 'slideshows'.
-In that folder do a:
-```bash
-./compile
-```
-to create a proper index.html.
+There are defined some Gulp tasks to handle the slideshows:
 
-TODO:
-Add some gulp tasks to compile sass and md.
+```sh
+gulp create --n your-new-slideshow-project-name
+```
+Creates a new project in the folder named after the `--n` flag, in the `slideshows` folder
+
+```sh
+gulp compile --n your-new-slideshow-project-name
+```
+Compiles the data contained in `index.md` following the template `template.html`. This operation creates a proper `index.html` file to hold the slideshow.
+
+```sh
+gulp watchdata --n your-new-slideshow-project-name
+```
+Watches and compiles the changes in `index.md`.
+
+```sh
+gulp sass --n your-new-slideshow-project-name
+```
+Compiles the sass file `style.sass` in the folder `style` of your project.
+
+```sh
+gulp watchsass --n your-new-slideshow-project-name
+```
+Watches and compiles the changes in `style.sass`
