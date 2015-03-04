@@ -1,7 +1,0 @@
-#!/bin/bash
-read -p 'Select a folder name: ' foldername
-folder='slideshows/'$foldername
-
-cp -r template ${folder}
-echo -e '#!/bin/bash \n pandoc -t html5 --template=template.html --standalone --section-divs --variable theme="black" --variable transition="slide" data.md -o index.html' >> ${folder}'/compile'
-chmod +x ${folder}/compile
