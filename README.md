@@ -6,7 +6,7 @@ It has three main differences with a regular Reveal installation:
 * It's intended to be used with [Sass](http://sass-lang.com/). And if you don't know Sass yet, go right now and learn about it.
 
 ## Installation
-To install it, clone it with a `--recursive` flag on, to enable the cloning of _Reveal_ (contained as a submodule of _slideshower_):
+To install it, clone it with a `--recursive` flag on, to enable the cloning of Reveal (contained as a submodule of RevealFactory):
 ```sh
 git clone --recursive https://github.com/Ale-/slideshower/
 ```
