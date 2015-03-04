@@ -1,0 +1,4 @@
+# Ignore everything in this directory. Hack to create the empty folder in the repo.
+*
+# Except this file
+!.gitignore
