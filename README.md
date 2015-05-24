@@ -1,5 +1,5 @@
 # LaReveladora
-**LaReveladora** is a project forked somehow from [Reveal.js] (http://lab.hakim.se/reveal-js/#/), intended for people who need to create presentations on a regular basis. 
+**LaReveladora** is a project forked from [Reveal.js] (http://lab.hakim.se/reveal-js/#/), intended for people who need to create presentations on a regular basis. 
 It has three main differences with a regular Reveal installation:
 * Instead of downloading instances of Reveal library for each project it has a common folder with only an instance of Reveal.js and a folder of projects, managed by [Gulp](http://gulpjs.com/) tasks. 
 * Instead of coupling data and representation in the `index.html` as Reveal does this flavour takes advantage of mighty [pandoc](http://pandoc.org/) (as a [node module](https://www.npmjs.com/package/gulp-pandoc), handled by Gulp) to have a markdown file with the data, `index.md`. This design makes easy to maintain the data and code (and, no way, who doesn't prefer markdown to html?). To do that it uses a template file, `template.html`, forked from [this gist](https://gist.github.com/aaronwolen/5017084).
@@ -26,12 +26,16 @@ And you're done!
 
 ### Create your first project:
 ```sh
-gulp create --n your-new-slideshow-project-name
+gulp create --n project-name
 ```
+
+This command creates a project of name 'project-name', in projects folder, and updates 'index.json' with project's info. That file is readed by index.html to create a summary of the projects.
 
 ### Modify the data
 
-Each `# (h1)` will be considered a slide in the compiled `index.html`:
+To update contents you have to update `index.md`, that uses markdown as markup language. To create the structure of the document follow these simple rules:
+
+* Each `# (h1)` will be considered a slide in the compiled `index.html`:
 ```md
 # First slide
 My content
@@ -39,7 +43,7 @@ My content
 # Second slide
 Another content
 ```
-To create a vertical layout, embed `## (h2)` under a common title:
+* To create a vertical layout, embed `## (h2)` under a common title:
 ```md
 # Common title for my vertical layout
 
@@ -49,7 +53,8 @@ Content
 ## Second slide in the stack
 Content
 ```
-And probably that's all you need to know. Use regular markdown syntax in the content and that's it.
+
+The second one watches changes, with LiveReload enabled by default.
 
 ### Compile the results
 
@@ -57,20 +62,16 @@ Now it's time to see the results. So compiles the data contained in `index.md`. 
 ```sh
 gulp compile --n your-new-slideshow-project-name
 ```
-Or watch the changes in the file (live reload to come) :
+Or watch the changes in the file (with liveReload enabled) :
 ```sh
-gulp watchdata --n your-new-slideshow-project-name
+gulp watch --n your-new-slideshow-project-name
 ```
 Look at the generated `index.html` to see the results.
 
 ### Give some nice style
 
-For that modify the `style.css` in the `style` folder o use a `style.sass` file and compile it: 
-```sh
-gulp sass --n your-new-slideshow-project-name
-```
-or watch it:
+There's a gulp task to compile sass:
 
 ```sh
-gulp watchsass --n your-new-slideshow-project-name
+gulp sass --n your-new-slideshow-project-name
 ```
