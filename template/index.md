@@ -1,5 +1,5 @@
 % Title
-% [author](website)
+% Author
 % Place and date
 
 # First slide
