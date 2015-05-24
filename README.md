@@ -54,19 +54,18 @@ Content
 Content
 ```
 
-The second one watches changes, with LiveReload enabled by default.
-
 ### Compile the results
 
-Now it's time to see the results. So compiles the data contained in `index.md`. That will follow the template defined in `template.html`. This operation creates a proper `index.html` file to hold the slideshow.
+Now it's time to see the results. You've to compile `index.md`. In order to get that, we use pandoc, following the template defined in `template.html`. This operation creates a proper `index.html` file to hold the slideshow.
+
 ```sh
 gulp compile --n your-new-slideshow-project-name
 ```
-Or watch the changes in the file (with liveReload enabled) :
+
+You can also watch the changes in the file (with liveReload enabled) :
 ```sh
 gulp watch --n your-new-slideshow-project-name
 ```
-Look at the generated `index.html` to see the results.
 
 ### Give some nice style
 
