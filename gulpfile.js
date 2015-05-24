@@ -6,6 +6,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var pandoc = require('gulp-pandoc');
 var livereload = require('gulp-livereload');
+var jeditor = require('gulp-json-editor');
 
 //Projects folder
 
@@ -22,11 +23,25 @@ gulp.task('default', ['watch']);
  * Create a new project in projects folder
  */
 
-gulp.task('create', function() {
-  if(gutil.env.n == undefined) 
+gulp.task('create', function()
+{
+  var name = gutil.env.n;  
+
+  //Copy the template to the specified folder
+  if(name == undefined) 
     return new Error('You must specify a name for your project.');
-  gulp.src('./template/**')
-    .pipe(gulp.dest(projects + gutil.env.n));
+  gulp.src('./template/**').pipe( gulp.dest(projects + name) );
+
+  //Update index.json with the new project
+  gulp.src("./index.json")
+    .pipe( jeditor( function(json) {
+        json.items.push( {
+            "name" : gutil.env.n, 
+            "description" : "" 
+        });
+        return json;
+    }))
+    .pipe(gulp.dest("./"));
 });
 
 
