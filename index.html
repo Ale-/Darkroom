@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css"></link>
+  </head>
+  <body>
+      <h1 id="site-title"></h1>
+      <h2 id="site-description"></h2>
+      <ul id="site-items"></ul>
+
+      <!-- Gets data from index.json and builds the document -->
+      <script>
+          $.ajax({
+              "url" : "index.json",
+              "dataType" : "json",
+              "success" : function(data) {
+                  $.each(data.items, function(index, item){
+                      var title = item.name;
+                      var thumbnail = "<img src='"+ item.thumbnail + "'>";
+                      var description = item.description;
+                      var meta = item.date;
+                      $('#site-items').append("<li><figure>" + thumbnail + "</figure><h3>" + title + "</h3><p>" + description + "</p><p>" + meta + "</p></li>");
+                  });
+                  document.title = data.name;
+                  document.description = data.description;
+                  $('#site-title').html( document.title );
+                  $('#site-description').html( document.description );
+              },
+          });
+      </script>
+  </body>
+</html>
