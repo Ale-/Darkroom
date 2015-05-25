@@ -40,7 +40,7 @@ gulp.task('create', function()
   gulp.src("./index.json")
     .pipe( jeditor( function(json) {
         json.items.push( {
-            "name" : gutil.env.n,
+            "name" : "<a href='./projects/" + gutil.env.n + "'>"+ gutil.env.n + "</a>",
             "thumbnail" : "./projects/" + gutil.env.n + "/imgs/thumbnail.png", 
             "description" : "",
             "date" : ""

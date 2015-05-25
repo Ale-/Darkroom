@@ -21,7 +21,7 @@
                       var thumbnail = "<img src='"+ item.thumbnail + "'>";
                       var description = item.description;
                       var meta = item.date;
-                      $('#site-items').append("<li><figure>" + thumbnail + "</figure><h3>" + title + "</h3><p>" + description + "</p><p>" + meta + "</p></li>");
+                      $('#site-items').append("<li><figure>" + thumbnail + "</figure><h3>" + title + "</h3><p class='date'>" + meta + "</p><p class='desc'>" + description + "</p></li>");
                   });
                   document.title = data.name;
                   document.description = data.description;
