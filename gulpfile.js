@@ -62,9 +62,9 @@ gulp.task('compile', function() {
         from: 'markdown',
         to: 'html5',
         ext: '.html',
-        args: [ '--template=' + folder + '/template.html', '--standalone', '--section-divs' ]
+        args: [ '--template=projects/' + gutil.env.n + '/template.html', '--standalone', '--section-divs' ]
     }))
-    .pipe( gulp.dest( folder ))
+    .pipe( gulp.dest('./projects/' + gutil.env.n ))
     .pipe( livereload ());
 });
 

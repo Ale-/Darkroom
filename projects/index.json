@@ -1,5 +1,10 @@
 {
   "name": "Presentation Set Title",
   "description": "Presentation Set Description",
-  "items": [ ]
+  "items": [{
+    "name": "<a href='test'>test</a>",
+    "thumbnail": "test/imgs/thumbnail.png",
+    "description": "",
+    "date": ""
+  }]
 }
