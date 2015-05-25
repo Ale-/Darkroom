@@ -11,7 +11,6 @@ var symlink = require('gulp-symlink');
 
 //Projects folder
 
-var projects = './projects/';
 
 /**
  * Sets 'watch' as Gulp's default task
@@ -30,24 +29,24 @@ gulp.task('create', function()
 
   //Copy the template to the specified folder
   if(name == undefined) 
-    return new Error('You must specify a name for your project.');
+    return new Error('You must specify a folder name for your project.');
 
-  gulp.src('./template/**').pipe( gulp.dest(projects + name) );
+  gulp.src('./template/**').pipe( gulp.dest( "./projects/" + name) );
   
-  gulp.src('./revealjs').pipe( symlink(projects + name + '/revealjs') ); 
+  gulp.src('./revealjs').pipe( symlink("./projects/" + name + '/revealjs') ); 
 
   //Update index.json with the new project
-  gulp.src("./index.json")
+  gulp.src("./projects/index.json")
     .pipe( jeditor( function(json) {
         json.items.push( {
-            "name" : "<a href='./projects/" + gutil.env.n + "'>"+ gutil.env.n + "</a>",
-            "thumbnail" : "./projects/" + gutil.env.n + "/imgs/thumbnail.png", 
+            "name" : "<a href='" + gutil.env.n + "'>"+ gutil.env.n + "</a>",
+            "thumbnail" : gutil.env.n + "/imgs/thumbnail.png", 
             "description" : "",
             "date" : ""
         });
         return json;
     }))
-    .pipe(gulp.dest("./"));
+    .pipe(gulp.dest("./projects"));
 });
 
 
@@ -58,8 +57,7 @@ gulp.task('create', function()
 gulp.task('compile', function() {
   if(gutil.env.n == undefined) 
     return;
-  var folder = projects + gutil.env.n;
-  gulp.src(folder + '/index.md')
+  gulp.src("./projects/" + gutil.env.n + '/index.md')
     .pipe( pandoc ({
         from: 'markdown',
         to: 'html5',
@@ -78,7 +76,7 @@ gulp.task('compile', function() {
 gulp.task('sass', function() 
 {
   if(gutil.env.n == undefined) { return; }
-  var folder = projects + gutil.env.n + '/style/';
+  var folder = "./projects/" + gutil.env.n + '/style/';
   gulp.src(folder + 'style.sass')
     .pipe( sass({ indentedSyntax: 'true' }) )
     .pipe( rename({ extname: '.css' }) )
@@ -94,8 +92,8 @@ gulp.task('sass', function()
 gulp.task('watch', function() {
   if(gutil.env.n == undefined) 
     return;
-  var sass = projects + gutil.env.n + '/style/style.sass';
-  var data = projects + gutil.env.n + '/index.md';
+  var sass = "./projects/" + gutil.env.n + '/style/style.sass';
+  var data = "./projects/" + gutil.env.n + '/index.md';
   gulp.watch(data, ['compile']);
   livereload.listen();
 });

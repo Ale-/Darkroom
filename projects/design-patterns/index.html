@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>CodeUp (III) : Patrones de diseño</title>
+        <meta name="description" content="CodeUp (III) : Patrones de diseño">
+                    <meta name="author" content="<a href="414c45.net">Ale</a>" />
+                 
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+         
+        <link rel="stylesheet" href="revealjs/css/reveal.css">
+
+                    <link rel="stylesheet" href="revealjs/css/theme/black.css" id="theme">
+        
+        <!-- For syntax highlighting -->
+                    <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+                 
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+        document.write( '<link rel="stylesheet" href="revealjs/css/print/' +
+        ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) +
+        '.css" type="text/css" media="print">' );
+        </script>
+        
+        <!--Our style here-->
+        <link rel="stylesheet" href="style/style.css">
+ 
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+            </head>
+
+    <body>
+                <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="metadata" data-background="imgs/background.png">
+                    <h1>CodeUp (III) : Patrones de diseño</h1>
+                    <h3><a href="414c45.net">Ale</a></h3>
+                    <h4>Hangar, 21 de Mayo 2015</h4>
+                </section>    
+                                <section id="patrones-de-diseño" class="level1">
+<h1>Patrones de diseño</h1>
+<p>El concepto de patrón de diseño surge en el entorno de la programación orientada a objetos y proviene de la arquitectura, de las teorías de Christopher Alexander. Los patrones de diseño vienen a ser estrategias de programación pensadas a funcionar a distintas escalas, de lo micro a lo macro. Los primeros en sistematizarlos fueron el conocido como 'Gang of Four' (Gamma, Helm, Johnson y Vissides).</p>
+</section>
+<section id="básicamente" class="level1">
+<h1>Básicamente</h1>
+<p>La función de los patrones es múltiple:</p>
+<ul>
+<li>Hacer el código más reusable y mantenible.</li>
+<li>Crear componentes para una abstracción del lenguaje. Esto facilita la comunicación entre programadores, puede hacer el código comprensible con mayor rapidez y permite la re-apropiación del código con facilidad.</li>
+<li>DRY (<em>no te repitas a ti mismo</em>). Dotar de soluciones contrastadas a problemas habituales.</li>
+</ul>
+</section>
+<section id="tipos-de-patrones-de-diseño" class="level1">
+<h1>Tipos de patrones de diseño</h1>
+<p>Los patrones de diseño originales se agrupan en tres categorías:</p>
+<ul>
+<li><p><em>Patrones de creación</em>. Son estrategias de creación e instanciación de objetos.</p></li>
+<li><p><em>Patrones estructurales</em>. Son patrones que permiten la estructuración del código y los objetos.</p></li>
+<li><p><em>Patrones de comportamiento</em>. Son patrones que tienen que ver con las funcionalidades de los objetos.</p></li>
+</ul>
+<p>Por oposición a los patrones existe también el concepto de anti-patrón.</p>
+</section>
+<section id="pero-no-sólo..." class="level1">
+<h1>Pero no sólo...</h1>
+<p>Realmente los patrones de diseño no han parado de crecer y hay multitud de ellos. Lo más importante no es sabérselos todos sino interiorizar sus mecanismos. <strong>Para mí</strong> los dos principios más importantes son los siguientes:</p>
+<ul>
+<li><p><em>Favorecer la abstracción frente la concreción</em>. La indirección de la abstracción permite que el código no esté confinado a las intenciones del diseño original y permite la ampliación flexible del código a medida que sea necesario. Las clases sólo pueden extender de manera única, mientras que pueden implementar de manera múltiple.</p></li>
+<li><p><em>Desacoplar los funcionamientos y estructuras de las cosas</em>. Favorecer la modularidad.</p></li>
+</ul>
+</section>
+<section id="un-ejemplo" class="level1">
+<h1>Un ejemplo</h1>
+<section id="section" class="level2">
+<h2></h2>
+<p>Vamos a comenzar con un patrón de diseño que no es de los originales, <a href="https://en.wikipedia.org/wiki/Constant_interface">interfaz de constantes</a>. Las interfaces en OOP son clases abstractas puras que delegan en las clases que las implementan el concretar el comportamiento. Las interfaces sólo pueden estar compuestas por métodos abstractos y campos estáticos finales. El patrón en cuestión viene a ser encapsular en una interfaz todas las constantes de una librería o programa. Por ejemplo, processing usa este patrón para encapsular todas sus constantes (<a href="https://github.com/processing/processing/blob/master/core/src/processing/core/PConstants.java">Código fuente de PConstants</a>). Las clases que quieran usar dichas constantes sólo tendran que implementar dicha interfaz. Este sería un patrón estructural, porque define una manera de ordenar nuestro código.</p>
+<p>En este ejemplo tan sencillo vemos las virtudes y mecanismos habituales de un patrón de diseño. Se desacoplan los datos del comportamiento y se usan la indirección y la abstracción. El resultado final es una estructuración más limpia y fácil de mantener...</p>
+</section>
+<section id="pero...-seguro" class="level2">
+<h2>Pero... ¿seguro?</h2>
+<p>También traigo este ejemplo a colación porque hay discusión en torno a el, habiendo opiniones que lo consideran un anti-patrón de diseño, con pocos beneficios respecto a sus desventajas. La alternativa sería crear una clase final normal con un constructor privado que se importa estáticamente. Es decir, ¡tampoco hay que fetichizar la indirección ni la abstracción!</p>
+<pre><code>final class Constants {
+    private Constants() { // restrict instantiation }
+    static final double PI = 3.14;
+}
+
+import static Constants.PI;
+ 
+public class Calculations {
+    void printPi() { println(PI); }
+}
+</code></pre>
+</section>
+</section>
+<section id="y-finalmente" class="level1">
+<h1>Y finalmente</h1>
+<p>De alguna manera todos los patrones son soluciones basadas en clases. Es decir, no son estrategias abstractas sino que son estrategias que se concretan en clases. Un patrón Iterador necesita de una clase Iterator, un patrón Comando usa una clase Comando, etc. En la OOP todo es un objeto, hasta una estrategia abstracta. Vamos a repasar algunos de los patrones originales, para hacernos una idea de cómo funciona todo esto:</p>
+</section>
+<section id="patrones-estructurales" class="level1">
+<h1>Patrones estructurales</h1>
+<section id="section-1" class="level2">
+<h2></h2>
+<p>Los patrones estructurales tienen que ver las relaciones entre clases dentro de la estructura del código:</p>
+</section>
+<section id="decorator" class="level2">
+<h2><em>Decorator</em></h2>
+<p>El patrón <strong>Decorador</strong> es útil para crear familias de objetos basados unos en otros y es usado, por ejemplo, para la creación de elementos de una interfaz gráfica. Por ejemplo podríamos querer crear un elemento 'Ventana', otro 'Ventana con botón de minimizar', otro 'Ventana con botón de minimizar y barras de scroll', etc. Cada clase añadiría pequeñas variaciones a otras clases del set, es decir, las 'decoraría'.</p>
+</section>
+<section id="facade" class="level2">
+<h2><em>Facade</em></h2>
+<p>El patrón <em>Fachada</em> es útil para crear una interfaz simple sobre otra compleja, que facilite las interacciones o las haga más cómodas a criterio del programador. Por ejemplo podemos tener una biblioteca de matemáticas muy potente de Java, pero compleja de usar y podríamos programar una interfaz alternativa sobre esta que simplificase nuestras interacciones o que facilitara las más comunes.</p>
+</section>
+<section id="adapter" class="level2">
+<h2><em>Adapter</em></h2>
+<p>Un patrón <em>Adaptador</em> intenta resolver las incompatibilidades entre clases que no estuvieron diseñadas para trabajar juntas. Un ejemplo obvio en Processing es el de los vectores. Processing usa por ejemplo la clase PVector y la librería Geomerative usa la clase RVector. Esto hace que haya incompatibilidades entre clases nativas a ambas librerías y que podrían trabajar juntas perfectamente. Una solución es crear una clase 'adaptadora' que resuelva de manera invisible al usuario dicha incompatibilidad.</p>
+</section>
+<section id="flyweight" class="level2">
+<h2><em>Flyweight</em></h2>
+<p>Este patrón es usado de manera natural sin que nos demos cuenta. Intenta que una familia de objetos comparta tantos datos como le sea posible, reduciendo al mínimo el peso de sus elementos individuales. Se ha usado por ejemplo en editores de texto, donde los objetos serían los caracteres individuales. Si por ejemplo creamos una familia de partículas y una clase gestora con los datos comunes entre ellas, estaríamos usando este patrón de alguna manera.</p>
+</section>
+</section>
+<section id="los-patrones-de-comportamiento" class="level1">
+<h1>Los patrones de comportamiento</h1>
+<section id="section-2" class="level2">
+<h2></h2>
+<p>Los patrones de comportamiento distribuyen funcionalides y asignan patrones de comunicación entre objetos.</p>
+</section>
+<section id="strategy-command" class="level2">
+<h2><em>Strategy</em>, <em>Command</em></h2>
+<p>El patrón <em>Estrategia</em> agrupa algoritmos relacionados de manera que se pueda decidir en tiempo de ejecución cuál se emplea. El patrón <em>Command</em> encapsula un método y le añade un 'meta-comportamiento'. Por ejemplo, se podría emplear para que cada vez que se use un determinado método se mande un mensaje a un registro de eventos o para permitir el clásico Ctrl+Z. Ambos patrones son formalmente parecidos y difíciles de distinguir en la práctica. Las <em>estrategias</em> suelen aceptar argumentos y no tener estado, a diferencia de los <em>Comandos</em>. Este tipo de acercamiento (encapsular un método en un objeto) permite el empleo de <em>callbacks</em> en OOP.</p>
+</section>
+<section id="iterator" class="level2">
+<h2><em>Iterator</em></h2>
+<p>El patrón <em>Iterador</em> está pensado para poder recorrer un conjunto de objetos de una manera predeterminada. En la mayoría de lenguajes de programación, los elementos iterables disponen de la instrucción <em>for each</em>, que permite de una manera limpia efectuar operaciones sobre un conjunto en la manera deseada por el programador. Java viene ya 'equipado' con un par de clases al efecto, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html"><em>Iterable</em></a> e <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html"><em>Iterator</em></a>. Los objetos <em>Iterables</em> contienen un <em>Iterador</em>, que es el que resuelve el recorrido sobre los elementos. Los objetos <em>Iterables</em> soportan la instrucción <em>for each</em> de Java.</p>
+</section>
+<section id="visitor" class="level2">
+<h2><em>Visitor</em></h2>
+<p>El patrón <em>Visitador</em> desacopla el comportamiento de un objeto de su definición, de manera que el comportamiento pueda ser modificado o creado por una clase externa, que lo 'visita'. Esto permite extender de manera limpia la funcionalidad de un objeto a discreción sin necesidad de modificar su código original. Es parecido a la física de la vida real, donde las cosas se mueven más por fuerzas externas que internas --como las solemos programar--.</p>
+</section>
+</section>
+<section id="los-patrones-de-creación" class="level1">
+<h1>Los patrones de creación</h1>
+<section id="section-3" class="level2">
+<h2></h2>
+<p>Son patrones relacionados con la creación de objetos, bien delegando o bien modificando la instanciación habitual de los mismos.</p>
+</section>
+<section id="singleton" class="level2">
+<h2><em>Singleton</em></h2>
+<p>Un patrón <em>Singleton</em> impide que una clase se instancie más de una vez en un programa. Para ello hace al constructor de la clase privado, sólo accesible desde un método público que comprueba si ya se ha producido una instanciación de la clase e impidiendo en este caso la generación de un nuevo objeto. Es muy útil en programación concurrente, donde puede ser inseguro que haya más de un objeto de una clase encargada de acceder a un recurso externo (en la web, un fichero, etc.)</p>
+</section>
+<section id="factory" class="level2">
+<h2><em>Factory</em></h2>
+<p>En una <em>Factoría</em> se construyen objetos, de manera que se puedan desacoplar ambas fases. Hay de varios tipos. Una Factoría recibe argumentos que le permiten saber qué tipo de objeto requiere el usuario, si la factoría es normal nos devolverá el objeto deseado. Si es abstracta nos devolverá otra factoría concreta encargada de instanciar dicho objeto, desacoplando todavía más los procesos.</p>
+</section>
+</section>
+            </div>
+        </div>
+ 
+        <script src="revealjs/lib/js/head.min.js"></script>
+        <script src="revealjs/js/reveal.js"></script>
+        <script>
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: false,
+                // available themes are in /css/theme
+                                theme: Reveal.getQueryHash().theme || 'black',
+                                // default/cube/page/concave/zoom/linear/fade/none
+                                transition: Reveal.getQueryHash().transition || 'slide',
+                                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'revealjs/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+        </script>
+    </body>
+
+</html> 
