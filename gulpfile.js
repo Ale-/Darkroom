@@ -40,7 +40,8 @@ gulp.task('create', function()
   gulp.src("./index.json")
     .pipe( jeditor( function(json) {
         json.items.push( {
-            "name" : gutil.env.n, 
+            "name" : gutil.env.n,
+            "thumbnail" : "./projects/" + gutil.env.n + "/imgs/thumbnail.png", 
             "description" : "",
             "date" : ""
         });
@@ -81,7 +82,7 @@ gulp.task('sass', function()
   gulp.src(folder + 'style.sass')
     .pipe( sass({ indentedSyntax: 'true' }) )
     .pipe( rename({ extname: '.css' }) )
-    .pipe( gulp.dest(folder) );
+    .pipe( gulp.dest(folder) )
     .pipe( livereload ());
 });
 
