@@ -1,20 +1,5 @@
 {
   "name": "Presentation Set Title",
   "description": "A description of contents here.",
-  "items": [{
-    "name": "Other test",
-    "thumbnail": "./projects/Other test/imgs/thumbnail.png",
-    "description": "Taller buenísimo sobre lo que sea",
-    "date": "12/04/78"
-  }, {
-    "name": "<a href='./projects/Other tests'></a>",
-    "thumbnail": "./projects/Other tests/imgs/thumbnail.png",
-    "description": "",
-    "date": ""
-  }, {
-    "name": "<a href='./projects/Other testss'>Other testss</a>",
-    "thumbnail": "./projects/Other testss/imgs/thumbnail.png",
-    "description": "",
-    "date": ""
-  }]
+  "items": []
 }
